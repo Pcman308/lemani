@@ -12,6 +12,7 @@
     "provider": "github",
     "releaseType": "release"
   },
+  "author": "lucas <Lucassullywan@gmail.com>",
   "build": {
     "appId": "com.lemanipet",
     "productName": "Lemani Pet",
@@ -40,8 +41,11 @@
       "icon": "src/screens/main/assets/icon.png",
       "target": [
         "AppImage",
-        "deb"
-      ]
+        "deb",
+        "snap",
+        "rpm"
+      ],
+      "buildType": "distribution"
     },
     "nsis": {
       "oneClick": false,
