@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lemani Pet</title>
     <style>
-       body {
+        body {
             font-family: Arial, sans-serif;
             justify-content: center;
             align-items: center; 
@@ -29,7 +30,6 @@
         .img{
             margin: auto;
             display: flex;
-            margin-top: 5%;
         }
         .box{
             display: inline-block;
@@ -198,12 +198,29 @@
                 margin-left: 20px; /* Ajuste a margem esquerda conforme necessário */
             }
         }
+        @media (max-width: 980px) {
+            .container {
+                flex-direction: column;
+                align-items: center; /* Centraliza as colunas empilhadas */
+            }
+        
+            .col1, .col2 {
+                width: 100%;
+                max-width: 95%;
+                margin-right: 0;
+            }
+        
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
         .input-auto {
             padding: 5px;
             font-size: 12px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            min-width: 60%; /* Defina aqui a largura máxima desejada */
+            min-width: 60%; /* Defina aqui a largura minima desejada */
             max-width: 95%;
             max-height: 50px; /* Defina aqui a altura máxima desejada */
         }
@@ -236,19 +253,21 @@
         }
             
     </style>
+    <script src="scripts.js" defer></script>
 </head>
 <body>
-    <img class="img" src="assets/4ae92688a510a1b71fec9a9b634a0a06.png"><br>
+    <img class="img" src="assets\logo.png"><br>
     <div class="button-container">
         <div class="col1">
             <button class="button-link" onclick="openModal('pacientes')">Requisição de Pacientes Internos</button>
             <button class="button-link" onclick="openModal('Exameshematologicos')">Requisição de exames hematológicos e testes</button>
+            <button class="button-link" onclick="openModal('Exameshematologicosinter')">Requisição de exames hematológicos e testes | internamento</button>
             <button class="button-link" onclick="openModal('ExamesImagens')">Requisição de exames de imagens</button>
+            <button class="button-link" onclick="openModal('ExamesImagensinter')">Requisição de exames de imagens | internamento</button>
             <button class="button-link" onclick="openModal('Pagamentosvolantes')">Requisição de pagamentos - Veterinário/Volantes</button>
-            <button class="button-link" onclick="openModal('RequisiçãoEstorno')">Requisição de estorno</button>
-           
         </div>
         <div class="col2">
+            <button class="button-link" onclick="openModal('RequisiçãoEstorno')">Requisição de estorno</button>
             <button class="button-link" onclick="openModal('Recibopaga')">Recibo de pagamentos</button>
             <button class="button-link" onclick="openModal('SolictacaoNF')">Solicitação de NF</button>
             <button class="button-link" onclick="openModal('autorizacao')">Autorização de orçamento</button>
@@ -417,7 +436,7 @@
             <div id="content-to-print"></div>
             <div class="timestamp"></div>
             <img src="assets/Captura de tela 2024-06-03 194109.png" class="logoreq">
-            <p style="margin-left: 8%;">Requisição de Exames e Imagens</p>
+            <p style="margin-left: 8%;">Requisição de Exames de Imagens</p>
             <p style="margin-left: 30%;">Via 2 -clinica</p>
             <div class="box">
                 <form action="/submit_respostas" method="post">
@@ -557,7 +576,7 @@
             <div id="content-to-print"></div>
             <div class="timestamp"></div>
             <img src="assets/Captura de tela 2024-06-03 194109.png" class="logoreq">
-            <p style="margin-left: 8%;">Requisição de Exames e Imagens</p>
+            <p style="margin-left: 8%;">Requisição de Exames de Imagens</p>
             <p style="margin-left: 16%;">Via 3- Médico executor</p>
             <div class="box">
                 <form>
@@ -607,10 +626,145 @@
             <button class="print-button"onclick="imprimir('ExamesImagens')">Imprimir</button>
         </div>
     </div>
+    <div id="ExamesImagensinter" class="modal" id="content-to-print">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('ExamesImagens')">&times;</span>
+            <div class="timestamp"></div>
+            <img src="assets/Captura de tela 2024-06-03 194109.png" class="logoreq">
+            <p style="margin-left: 8%;">Requisição de Exames de imagens</p>
+            <p style="margin-left: 30%;">Via 2 -clinica</p>
+            <div class="box">
+                <form action="/submit_respostas" method="post">
+                    <label for="paciente">Paciente:</label>
+                    <input type="text" id="paciente" name="paciente" class="input-auto" oninput="adjustWidth(this)"></p>
+                </form>
+            </div><br>
+            <div class="box">
+                <form>
+                    <label for="idPaciente">ID Paciente:</label>
+                    <input type="text" id="idPaciente" name="idPaciente" class="input-auto" oninput="adjustWidth(this)"></p>
+                </form>
+            </div><br>
+            <div class="box">
+                <form>
+                    <label for="especie">Espécie:</label>
+                    <input type="text" id="especie" name="especie" class="input-auto" oninput="adjustWidth(this)"></p>
+                </form>
+            </div><br>
+            <div class="box">
+                <form>
+                    <label for="tutor">Tutor:</label>
+                    <input type="text" id="tutor" name="tutor" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div><br>
+            <div class="box">
+                <form>
+                    <label for="solicitante">Solicitante:</label>
+                    <input type="text" id="solicitante" name="solicitante" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div><br>
+            <div class="box group1">
+                <form>
+                    <label for="externo">Externo</label>
+                    <input type="checkbox" id="externo" name="especie" onclick="toggleCheckbox(this, 'group1')">
+                    
+                    <label for="interno">Interno</label>
+                    <input type="checkbox" id="interno" name="especie" onclick="toggleCheckbox(this, 'group1')"><br>
+                
+                    <label for="observação">Observação</label>
+                    <input type="checkbox" name="especie" id="observação" onclick="toggleCheckbox(this, 'group1')">
+                </form>
+            </div><br>
+            <div class="box">
+                <form>
+                    <label for="exames">Exame de Imagem:</label><br>
+                    <textarea id="textarea" name="exames" class="textarea" oninput="autoExpand(this)"></textarea></p>
+                </form>
+            </div><br>
+            <div class="box">
+                <form>
+                    <label for="datarealiza">Data da Realização:</label>
+                    <input type="date" id="datarealiza" name="datarealiza"></p>
+                </form>
+            </div><br>
+            <div class="box">
+                <form>
+                    <label for="Realizadopor">Realizado Por:</label>
+                    <input type="text" id="Realizadopor" name="Realizadopor" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="Requisiçãoentregue">Requisição entregue por:</label><br><br><br><br><br>
+                    <p class="assi2">_________________</p>
+                    <p class="assi">Responsável Por Prencher a Requisição</p><br>
+                </form>
+            </div>
+            <div class="box2">
+                <form>
+                    <label for="Requisiçãorecebida">Requisição Recebida por:</label><br><br><br><br><br>
+                    <p class="assi2">_________________</p>
+                    <p class="assi">Responsável Por Prencher a Requisição</p><br>
+                </form>
+            </div>
+            <div style="page-break-after: always;"></div>
+            <div id="content-to-print"></div>
+            <div class="timestamp"></div>
+            <img src="assets/Captura de tela 2024-06-03 194109.png" class="logoreq">
+            <p style="margin-left: 8%;">Requisição de Exames de Imagens</p>
+            <p style="margin-left: 16%;">Via 3- Médico executor</p>
+            <div class="box">
+                <form>
+                    <label for="paciente">Paciente:</label>
+                    <input type="text" name="paciente" id="paciente" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="tutor">Tutor:</label>
+                    <input type="text" name="tutor" id="tutor" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="especie">Espécie:</label>
+                    <input type="text" name="especie" id="especie" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="Idade">Idade:</label>
+                    <input type="text" name="Idade" id="idade" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div class="box group2">
+                <form>
+                    <label for="Castrato">Castrato:</label><br>
+                    <label for="sim">Sim</label>
+                    <input type="checkbox" name="especie" id="sim" onclick="toggleCheckbox(this, 'group2')">
+                    <label for="nao">Não</label>
+                    <input type="checkbox" name="especie" id="nao" onclick="toggleCheckbox(this, 'group2')">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="Exames">Exames de imagem:</label><br>
+                    <textarea id="textarea" class="textarea" name="Exame" oninput="autoExpand(this)"></textarea>
+                </form>
+            </div>
+            <div class="box2">
+                <form>
+                    <label for="solicitante">Solicitante</label>
+                    <input type="text" name="solicitante" id="solicitante" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <button class="print-button"onclick="imprimir('ExamesImagensinter')">Imprimir</button>
+        </div>
+    </div>
     <div id="Exameshematologicos" class="modal" id="content-to-print">
         <div class="modal-content">
             <div class="timestamp"></div>
-            <span class="close" onclick="closeModal('Exameshematologicos')">&times;</span>
+            <span class="close" onclick="closeModal('Exameshematologicosinter')">&times;</span>
             <img src="assets/Captura de tela 2024-06-03 194109.png" class="logoreq">
             <p style="margin-left: 10%;">Requisição de Exames Hematológicos e Testes</p>
             <div class="box">
@@ -666,7 +820,7 @@
                     <textarea id="textarea" name="exames"  class="textarea" oninput="autoExpand(this)"></textarea></p>
                 </form>
             </div><br>
-            <div class="box">
+            <div class="box2">
                 <form>
                     <label for="dataColeta">Data de Coleta:</label>
                     <input type="date" id="dataColeta" name="dataColeta"></p>
@@ -674,7 +828,8 @@
             </div><br>
             <div class="box">
                 <form>
-                    <p>Prazo:24h úteis</p>
+                    <label for="Prazo">Prazo:</label>
+                    <input type="text" name="prazo" id="prazo" class="input-auto" oninput="adjustWidth(this)">
                 </form>
             </div>
             <div class="box2">
@@ -824,6 +979,132 @@
             <button class="print-button" onclick="imprimir('Pagamentosvolantes')">Imprimir</button>
         </div>
     </div>
+    <div id="Exameshematologicosinter" class="modal" id="content-to-print">
+        <div class="modal-content">
+            <div class="timestamp"></div>
+            <span class="close" onclick="closeModal('Exameshematologicos')">&times;</span>
+            <img src="assets/Captura de tela 2024-06-03 194109.png" class="logoreq">
+            <p style="margin-left: 10%;">Requisição de Exames Hematológicos e Testes</p>
+            <div class="box">
+                <form action="/submit_respostas" method="post">
+                    <label for="paciente">Paciente:</label>
+                    <input type="text" id="paciente" name="paciente" class="input-auto" oninput="adjustWidth(this)"></p>
+                </form>
+            </div><br>
+            <div class="box">
+                <form>
+                    <label for="idPaciente">ID Paciente:</label>
+                    <input type="text" id="idPaciente" name="idPaciente" class="input-auto" oninput="adjustWidth(this)"></p>
+                </form>
+            </div><br>
+            <div class="box group3">
+                <form>
+                    <p>Espécie:</p>
+                    <label for="canino">Canino</label>
+                    <input type="checkbox" id="canino" name="especie" onclick="toggleCheckbox(this, 'group3')">
+                    <label for="felino">Felino</label>
+                    <input type="checkbox" id="felino" name="especie" onclick="toggleCheckbox(this, 'group3')"><br>
+                    <label for="outro">Outros:</label>
+                    <input type="text" name="outro" id="outro" class="input-auto" onclick="toggleCheckbox(this, 'group3')" oninput="adjustWidth(this)">
+                </form>
+            </div><br>
+            <div class="box">
+                <form>
+                    <label for="tutor">Tutor:</label>
+                    <input type="text" id="tutor" name="tutor" class="input-auto" oninput="adjustWidth(this)"></p>
+                </form>
+            </div><br>
+            <div class="box">
+                <form>
+                    <label for="solicitante">Solicitante:</label>
+                    <input type="text" id="solicitante" name="solicitante" class="input-auto" oninput="adjustWidth(this)"></p>
+                </form>
+            </div><br>
+            <div class="box group4">
+                <form>
+                    <label for="externo">Externo</label>
+                    <input type="checkbox" id="externo" name="especie" onclick="toggleCheckbox(this, 'group4')">
+                    
+                    <label for="interno">Interno</label>
+                    <input type="checkbox" id="interno" name="especie" onclick="toggleCheckbox(this, 'group4')"></p>
+                
+                    <label for="observação">Observação</label><br>
+                    <textarea id="textarea" name="observação" class="textarea"  oninput="autoExpand(this, 'group4')"></textarea></p>
+                </form>
+            </div><br>
+            <div class="box2">
+                <form>
+                    <label for="exames">Exames:</label><br>
+                    <textarea id="textarea" name="exames" class="textarea" oninput="autoExpand(this)"></textarea></p>
+                </form>
+            </div><br>
+            <button class="print-button" onclick="imprimir('Exameshematologicosinter')">Imprimir</button>
+        </div>
+    </div>
+    <div id="Pagamentosvolantes" class="modal" id="content-to-print">
+        <div class="modal-content">
+            <div class="timestamp"></div>
+            <span class="close" onclick="closeModal('Pagamentosvolantes')">&times;</span>
+            <img src="assets/Captura de tela 2024-06-03 194109.png" class="logoreq">
+            <p style="margin-left: 10%;">Requisição de Pagamentos - Veterinário/Volantes</p>
+            <div class="box">
+                <form>
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" name="data">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="Medico">Médico:</label>
+                    <input type="text" name="Medico" id="Medico" class="input-auto" oninput="adjustWidth(this)">
+            </div>
+            <div class="box">
+                <form>
+                    <label for="Pix">Pix:</label>
+                    <input type="text" name="Pix" id="Pix" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="valor">Valor:</label>
+                    <input type="number" name="valor" id="valor">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="procedimento">Procedimento:</label><br>
+                    <textarea  id="textarea" class="textarea" oninput="autoExpand(this)"></textarea>
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="solicitante">Solicitante:</label>
+                    <input type="text" name="solicitante" id="solicitante" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="paciente">Paciente:</label>
+                    <input type="text" name="paciente" id="paciente" class="input-auto"oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="tutor">Tutor:</label>
+                    <input type="text" name="tutor" id="tutor" class="input-auto"oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div class="box2">
+                <form>
+                    <label for="entregue">Requisição entregue por:</label>
+                    <input type="text" name="entregue" id="entregue" class="input-auto" oninput="adjustWidth(this)"><br><br><br>
+                    <p class="assi2">_________________</p>
+                    <p class="assi">Responsável Por Prencher a Requisição</p><br>
+                </form>
+            </div>
+            <button class="print-button" onclick="imprimir('Pagamentosvolantes')">Imprimir</button>
+        </div>
+    </div>
     <div id="RequisiçãoEstorno" class="modal"id="content-to-print">
         <div class="modal-content">
             <div class="timestamp"></div>
@@ -892,7 +1173,7 @@
             </div>
             <div class="box">
                 <form>
-                    <label for="estorno">Estorno:</labelf>
+                    <label for="estorno">Estorno:</label>
                     <input type="number" name="estorno" id="estorno">
                 </form>
             </div>
@@ -976,7 +1257,7 @@
             </div>
             <div class="box">
                 <form>
-                    <label for="estorno">Estorno:</labelf>
+                    <label for="estorno">Estorno:</label>
                     <input type="number" name="estorno" id="estorno">
                 </form>
             </div>
@@ -1267,73 +1548,73 @@
             <div class="box">
                 <form>
                     <label for="valor">Valor de abertura:</label>
-                    <input type="number" name="valor" id="valor" class="input-auto" onclick="adjustWidth(this)">
+                    <input type="text" name="valor" id="valor" class="input-auto" onclick="adjustWidth(this)" oninput="numero(this)">
                 </form>
             </div>
             <div class="box">
                 <form>
                     <label for="abertura">Abertura:</label>
-                    <input type="number" name="abertura" id="abertura">
+                    <input type="date" name="abertura" id="abertura" onclick="adjustWidth(this)">
                 </form>
             </div>
             <div class="box">
                 <form>
                     <label for="fechamento">Fechamento:</label>
-                    <input type="number" name="fechamento" id="fechamento">
+                    <input type="date" name="fechamento" id="fechamento" onclick="adjustWidth(this)">
                 </form>
             </div>
             <div class="box">
                 <form>
                     <label for="responsavel">Responsável:</label>
-                    <input type="text" name="responsavel" id="responsavel" class="input-auto" onclick="adjustWidth(this)">
+                    <input type="text" name="responsavel" id="responsavel" class="input-auto" oninput="adjustWidth(this)">
                 </form>
             </div>
             <div class="box">
                 <form>
                     <label for="debito">Débito:</label>
-                    <input type="number" name="debito" id="debito">
+                    <input type="text" name="debito" id="debito" onclick="adjustWidth(this)" oninput="numero(this)">
                 </form>
             </div>
             <div class="box">
                 <form>
                     <label for="credito">Crédito</label>
-                    <input type="number" name="credito" id="credito">
+                    <input type="text" name="credito" id="credito" onclick="adjustWidth(this)" oninput="numero(this)">
                 </form>
             </div>
             <div class="box">
                 <form>
                     <label for="Pix">Pix:</label>
-                    <input type="number" name="Pix" id="Pix">
+                    <input type="text" name="Pix" id="Pix" onclick="adjustWidth(this)" oninput="numero(this)">
                 </form>
             </div>
             <div class="box">
                 <form>
                     <label for="dinheiro">Dinheiro:</label>
-                    <input type="number" name="dinheiro" id="dinheiro">
+                    <input type="text" name="dinheiro" id="dinheiro" onclick="adjustWidth(this)"oninput="numero(this)">
                 </form>
             </div>
             <div class="box">
                 <form>
                     <label for="credz">Credz:</label>
-                    <input type="number" name="credz" id="credz">
+                    <input type="text" name="credz" id="credz" onclick="adjustWidth(this)"oninput="numero(this)">
                 </form>
             </div>
             <div class="box">
                 <form>
                     <label for="entrada">Entrada:</label>
-                    <input type="number" name="entrada" id="entrada">
+                    <input type="text" name="entrada" id="entrada" onclick="adjustWidth(this)"oninput="numero(this)">
                 </form>
             </div>
             <div class="box">
                 <form>
                     <label for="saida">Saída:</label>
-                    <input type="number" name="saida" id="saida">
+                    <input type="text" name="saida" id="saida" onclick="adjustWidth(this)" oninput="numero(this)">
                 </form>
             </div>
             <div class="box">
                 <form>
                     <label for="valor">Valor de fechamento:</label>
-                    <input type="number" name="valor" id="valor">
+                    <input type="text" name="valor" id="valor" onclick="adjustWidth(this)" oninput="numero(this)">
                 </form>
             </div>
             <div class="box2">
@@ -1380,203 +1661,229 @@
         </div>
     </div>
     <script>
-       function openModal(modalId) {
-    document.getElementById(modalId).style.display = "block";
-}
-
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-    const modalContent = modal.querySelector('.modal-content');
-    
-    // Limpar os valores dos campos de texto
-    const textInputs = modalContent.querySelectorAll('input[type="text"]');
-    textInputs.forEach(input => input.value = '');
-
-    // Desmarcar as caixas de seleção
-    const checkboxes = modalContent.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => checkbox.checked = false);
-
-    // Limpar os valores dos campos de data
-    const dateInputs = modalContent.querySelectorAll('input[type="date"]');
-    dateInputs.forEach(input => input.value = '');
-
-    // Limpar os valores dos textareas
-    const textareas = modalContent.querySelectorAll('textarea');
-    textareas.forEach(textarea => {
-        textarea.value = '';
-        autoExpand(textarea); // Ajusta a altura dos textareas ao limpar
-    });
-
-    modal.style.display = "none";
-}
-
-window.onclick = function(event) {
-    const modals = document.getElementsByClassName("modal");
-    for (let i = 0; i < modals.length; i++) {
-        const modal = modals[i];
-        if (event.target == modal) {
-            closeModal(modal.id); // Chama a função para fechar o modal e limpar os valores
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
         }
-    }
-}
-
-function imprimir(modalId) {
-    const modal = document.getElementById(modalId);
-    const modalContent = modal.querySelector('.modal-content');
-
-    // Captura dos valores dos campos de texto
-    const textInputs = modalContent.querySelectorAll('input[type="text"]');
-    textInputs.forEach(input => input.setAttribute('value', input.value));
-
-    // Captura dos valores das caixas de seleção
-    const checkboxes = modalContent.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            checkbox.setAttribute('checked', 'checked');
-        } else {
-            checkbox.removeAttribute('checked');
-        }
-    });
-
-    // Captura dos valores dos textarea
-    const textareas = modalContent.querySelectorAll('textarea');
-    textareas.forEach(textarea => {
-        const span = document.createElement('span');
-        span.textContent = textarea.value;
-        span.style.whiteSpace = 'pre-wrap'; // Mantém as quebras de linha
-        textarea.parentNode.replaceChild(span, textarea);
-    });
-
-    // Captura dos valores dos campos de data
-    const dateInputs = modalContent.querySelectorAll('input[type="date"]');
-    dateInputs.forEach(input => input.setAttribute('value', input.value));
-
-    const now = new Date();
-    const formattedDate = now.toLocaleString();
-    const timestampDivs = modalContent.querySelectorAll('.timestamp');
-    timestampDivs.forEach(div => {
-        div.textContent = `Impressão realizada em: ${formattedDate}`;
-    });
-
-    const printContent = modalContent.innerHTML;
-    const originalContent = document.body.innerHTML;
-    document.body.innerHTML = `
-        <html>
-            <head>
-                <title>Impressão</title>
-                <style>
-                    .modal-content h2 {
-                        text-align: center;
-                        margin-top: 20px;
-                        font-size: 24px;
-                    }
-                </style>
-            </head>
-            <body>${printContent}</body>
-        </html>
-    `;
-    window.print();
-    document.body.innerHTML = originalContent;
-    window.location.reload();
-}
-
-function adjustWidth(input) {
-    input.style.width = 'auto';
-    input.style.width = input.scrollWidth + 'px';
-}
-
-function autoExpand(textarea) {
-    textarea.style.height = 'auto';
-    textarea.style.height = Math.min(textarea.scrollHeight, 300) + 'px';
-}
-
-
-function toggleCheckbox(checkbox, groupClass) {
-    const group = document.querySelectorAll(`.${groupClass}`);
-
-    group.forEach(div => {
-        const checkboxes = div.querySelectorAll('input[type="checkbox"]');
         
-        checkboxes.forEach(item => {
-            if (item !== checkbox) {
-                item.checked = false;
-                if (item.id === 'outro') {
-                    const outroInput = div.querySelector('#outro');
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalContent = modal.querySelector('.modal-content');
+            
+            // Limpar os valores dos campos de texto
+            const textInputs = modalContent.querySelectorAll('input[type="text"]');
+            textInputs.forEach(input => input.value = '');
+        
+            // Desmarcar as caixas de seleção
+            const checkboxes = modalContent.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+        
+            // Limpar os valores dos campos de data
+            const dateInputs = modalContent.querySelectorAll('input[type="date"]');
+            dateInputs.forEach(input => input.value = '');
+        
+            // Limpar os valores dos textareas
+            const textareas = modalContent.querySelectorAll('textarea');
+            textareas.forEach(textarea => {
+                textarea.value = '';
+                autoExpand(textarea); // Ajusta a altura dos textareas ao limpar
+            });
+        
+            modal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName("modal");
+            for (let i = 0; i < modals.length; i++) {
+                const modal = modals[i];
+                if (event.target == modal) {
+                    closeModal(modal.id); // Chama a função para fechar o modal e limpar os valores
+                }
+            }
+        }
+        
+        function imprimir(modalId) {
+            const modal = document.getElementById(modalId);
+            const modalContent = modal.querySelector('.modal-content');
+        
+            // Captura dos valores dos campos de texto
+            const textInputs = modalContent.querySelectorAll('input[type="text"]');
+            textInputs.forEach(input => input.setAttribute('value', input.value));
+        
+            // Captura dos valores das caixas de seleção
+            const checkboxes = modalContent.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    checkbox.setAttribute('checked', 'checked');
+                } else {
+                    checkbox.removeAttribute('checked');
+                }
+            });
+        
+            // Captura dos valores dos textarea
+            const textareas = modalContent.querySelectorAll('textarea');
+            textareas.forEach(textarea => {
+                const span = document.createElement('span');
+                span.textContent = textarea.value;
+                span.style.whiteSpace = 'pre-wrap'; // Mantém as quebras de linha
+                textarea.parentNode.replaceChild(span, textarea);
+            });
+        
+            // Captura dos valores dos campos de data
+            const dateInputs = modalContent.querySelectorAll('input[type="date"]');
+            dateInputs.forEach(input => input.setAttribute('value', input.value));
+        
+            const now = new Date();
+            const formattedDate = now.toLocaleString();
+            const timestampDivs = modalContent.querySelectorAll('.timestamp');
+            timestampDivs.forEach(div => {
+                div.textContent = `Impressão realizada em: ${formattedDate}`;
+            });
+        
+            const numbers = modalContent.querySelectorAll('input[type="number"]');
+            numbers.forEach(input => input.setAttribute('value', input.value));
+        
+            const printContent = modalContent.innerHTML;
+            const originalContent = document.body.innerHTML;
+            document.body.innerHTML = `
+                <html>
+                    <head>
+                        <title>Impressão</title>
+                        <style>
+                            .modal-content h2 {
+                                text-align: center;
+                                margin-top: 20px;
+                                font-size: 24px;
+                            }
+                        </style>
+                    </head>
+                    <body>${printContent}</body>
+                </html>
+            `;
+            window.print();
+            document.body.innerHTML = originalContent;
+            window.location.reload();
+        }
+        
+        function adjustWidth(input) {
+            input.style.width = 'auto';
+            input.style.width = input.scrollWidth + 'px';
+        }
+        
+        function autoExpand(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 300) + 'px';
+        }
+        
+        function numero(input) {
+            let value = input.value;
+        
+            // Remove todos os caracteres não numéricos, exceto ponto e vírgula
+            value = value.replace(/[^0-9.,]/g, '');
+        
+            // Remove os pontos antes de formatar para evitar conflitos
+            value = value.replace(/\./g, '');
+        
+            // Verifica se há mais de uma vírgula e remove as adicionais
+            let parts = value.split(',');
+            if (parts.length > 2) {
+                value = parts[0] + ',' + parts.slice(1).join('');
+            }
+        
+            // Separa parte inteira e decimal
+            let intPart = parts[0];
+            let decPart = parts.length > 1 ? ',' + parts[1] : '';
+        
+            // Formata a parte inteira com pontos a cada 3 dígitos
+            intPart = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        
+            // Atualiza o valor do campo de entrada com a parte inteira e decimal formatadas
+            input.value = intPart + decPart;
+        }
+        
+        function toggleCheckbox(checkbox, groupClass) {
+            const group = document.querySelectorAll(`.${groupClass}`);
+        
+            group.forEach(div => {
+                const checkboxes = div.querySelectorAll('input[type="checkbox"]');
+                
+                checkboxes.forEach(item => {
+                    if (item !== checkbox) {
+                        item.checked = false;
+                        if (item.id === 'outro') {
+                            const outroInput = div.querySelector('#outro');
+                            if (outroInput) {
+                                outroInput.value = '';
+                            }
+                        }
+                    }
+                });
+            });
+        
+            if (checkbox.checked && checkbox.id !== 'outro') {
+                const parentDiv = checkbox.closest(`.${groupClass}`);
+                if (parentDiv) {
+                    const outroInput = parentDiv.querySelector('#outro');
                     if (outroInput) {
                         outroInput.value = '';
                     }
                 }
             }
-        });
-    });
-
-    if (checkbox.checked && checkbox.id !== 'outro') {
-        const parentDiv = checkbox.closest(`.${groupClass}`);
-        if (parentDiv) {
-            const outroInput = parentDiv.querySelector('#outro');
-            if (outroInput) {
-                outroInput.value = '';
-            }
         }
-    }
-}
-
-function updateButtonContainerClass() {
-    const buttonContainers = document.querySelectorAll('.button-container');
-    buttonContainers.forEach(container => {
-        if (container.scrollWidth > container.clientWidth) {
-            container.classList.add('scrollable');
-        } else {
-            container.classList.remove('scrollable');
-        }
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const inputs = Array.from(document.querySelectorAll('input, textarea'));
-
-    inputs.forEach((input, index) => {
-        input.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                let nextIndex = index + 1;
-                while (nextIndex < inputs.length) {
-                    const nextInput = inputs[nextIndex];
-                    if (!nextInput.disabled && nextInput.type !== 'hidden' && nextInput.style.display !== 'none') {
-                        nextInput.focus();
-                        break;
-                    }
-                    nextIndex++;
+        
+        function updateButtonContainerClass() {
+            const buttonContainers = document.querySelectorAll('.button-container');
+            buttonContainers.forEach(container => {
+                if (container.scrollWidth > container.clientWidth) {
+                    container.classList.add('scrollable');
+                } else {
+                    container.classList.remove('scrollable');
                 }
-            }
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = Array.from(document.querySelectorAll('input, textarea'));
+        
+            inputs.forEach((input, index) => {
+                input.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        let nextIndex = index + 1;
+                        while (nextIndex < inputs.length) {
+                            const nextInput = inputs[nextIndex];
+                            if (!nextInput.disabled && nextInput.type !== 'hidden' && nextInput.style.display !== 'none') {
+                                nextInput.focus();
+                                break;
+                            }
+                            nextIndex++;
+                        }
+                    }
+                });
+            });
         });
-    });
-});
-
-document.querySelectorAll('.cpf-input').forEach(input => {
-    input.addEventListener('input', (event) => {
-        let value = input.value.replace(/\D/g, ''); // Remove all non-digit characters
-        let formattedValue = '';
-
-        if (value.length > 3) {
-            formattedValue += value.substring(0, 3) + '.';
-            value = value.substring(3);
-        }
-        if (value.length > 3) {
-            formattedValue += value.substring(0, 3) + '.';
-            value = value.substring(3);
-        }
-        if (value.length > 3) {
-            formattedValue += value.substring(0, 3) + '-';
-            value = value.substring(3);
-        }
-
-        formattedValue += value;
-        input.value = formattedValue;
-    });
-});
-
-
+        
+        document.querySelectorAll('.cpf-input').forEach(input => {
+            input.addEventListener('input', (event) => {
+                let value = input.value.replace(/\D/g, ''); // Remove all non-digit characters
+                let formattedValue = '';
+        
+                if (value.length > 3) {
+                    formattedValue += value.substring(0, 3) + '.';
+                    value = value.substring(3);
+                }
+                if (value.length > 3) {
+                    formattedValue += value.substring(0, 3) + '.';
+                    value = value.substring(3);
+                }
+                if (value.length > 3) {
+                    formattedValue += value.substring(0, 3) + '-';
+                    value = value.substring(3);
+                }
+        
+                formattedValue += value;
+                input.value = formattedValue;
+            });
+        });        
     </script>
 </body>
 </html>
