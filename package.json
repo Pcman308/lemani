@@ -44,8 +44,7 @@
         "deb",
         "snap",
         "rpm"
-      ],
-      "buildType": "distribution"
+      ]
     },
     "nsis": {
       "oneClick": false,

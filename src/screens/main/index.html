@@ -139,10 +139,16 @@
         .print-button:hover {
             background-color: #c0a321;
         }
+        .box{
+                page-break-inside: avoid;
+            }
         @media print {
             .print-button,
             .close {
                 display: none;
+            }
+            .box{
+                page-break-inside: avoid;
             }
             .linha {
                 height: 2px;
@@ -211,7 +217,7 @@
                 width: 100%;
                 max-width: 95%;
                 margin-right: 0;
-                margin-bottom: -11%;
+                margin-bottom: -2.5%;
             }
         
             .button-container {
@@ -812,7 +818,7 @@
     <div id="Exameshematologicos" class="modal" id="content-to-print">
         <div class="modal-content">
             <div class="timestamp"></div>
-            <span class="close" onclick="closeModal('Exameshematologicosinter')">&times;</span>
+            <span class="close" onclick="closeModal('Exameshematologicos')">&times;</span>
             <img src="assets/Captura de tela 2024-06-03 194109.png" class="logoreq">
             <p style="margin-left: 10%;">Requisição de Exames Hematológicos e Testes</p>
             <div class="box" style="margin-bottom: -5px;">
@@ -850,11 +856,7 @@
                     <input type="text" id="solicitante" name="solicitante" class="input-auto" oninput="adjustWidth(this)"></p>
                 </form>
             </div><br>
-<<<<<<< HEAD
             <div class="box group2" style="margin-bottom: -5px;">
-=======
-            <div class="box group2" >
->>>>>>> 941b32eb11a320735c2789bd6a91394400642d7e
                 <form>
                     <label for="externo">Externo</label>
                     <input type="checkbox" id="externo" name="especie" onclick="toggleCheckbox(this, 'group2')">
@@ -872,34 +874,19 @@
                     <textarea id="textarea" name="exames"  class="textarea" oninput="autoExpand(this)"></textarea></p>
                 </form>
             </div><br>
-            <div class="box" style="margin-bottom: -5px;">
+            <div class="box">
                 <form>
-<<<<<<< HEAD
-                    <div style="display: flex; flex-direction: column;">
-                        <div style="flex: 1;">
-                            <label for="dataColeta">Data de Coleta:</label>
-                            <input type="date" id="dataColeta" name="dataColeta">
-                        </div>
-                       
-                        <div class="linha"></div>
-
-                        <div style="flex: 1; margin-top: -9px;">
-                            <label for="prazo">Prazo:</label>
-                            <input type="text" name="prazo" id="prazo" class="input-auto" oninput="adjustWidth(this)">
-                        </div>
-                    </div>
-=======
                     <label for="dataColeta">Data de Coleta:</label>
-                    <input type="date" id="dataColeta" name="dataColeta"></p>
-                </form>
-            </div><br>
-            <div class="box" style="margin-bottom: -5px;">
-                <form>
-                    <label for="Prazo">Prazo:</label>
-                    <input type="text" name="prazo" id="prazo" class="input-auto" oninput="adjustWidth(this)">
->>>>>>> 941b32eb11a320735c2789bd6a91394400642d7e
+                    <input type="date" id="dataColeta" name="dataColeta">
                 </form>
             </div>
+            <div class="box2">
+                <form>
+                    <label for="prazo">Prazo:</label>
+                    <input type="text" name="prazo" id="prazo" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div style="page-break-after: always;"></div>
             <div class="box2">
                 <form>
                     <p>Resultado: www.lemanipet.com.br</p><img src="assets/qr_code.png" height="60px" width="60px" top="50px">
@@ -1811,33 +1798,26 @@
             numbers.forEach(input => input.setAttribute('value', input.value));
         
             const printContent = modalContent.innerHTML;
-    const printCSS = `
-        <style>
-            @media print {
-                .linha {
-                    height: 2px !important;
-                    width: 100% !important;
-                    background-color: black !important;
-                    margin: 10px 0 !important;
-                }
-            }
-        </style>
-    `;
-    
-    // Substitui o conteúdo do corpo
-    document.body.innerHTML = `
-        <html>
-            <head>
-                <title>Impressão</title>
-                ${printCSS}
-            </head>
-            <body>${printContent}</body>
-        </html>
-    `;
-    window.print();
-    // Restaura o conteúdo original
-    window.location.reload();
-}
+            const originalContent = document.body.innerHTML;
+            document.body.innerHTML =`
+                <html>
+                    <head>
+                        <title>Impressão</title>
+                        <style>
+                            .modal-content h2 {
+                                text-align: center;
+                                margin-top: 20px;
+                                font-size: 24px;
+                            }
+                        </style>
+                    </head>
+                    <body>${printContent}</body>
+                </html>
+            `;
+            window.print();
+            document.body.innerHTML = originalContent;
+            window.location.reload();
+        }
         
         function adjustWidth(input) {
             input.style.width = 'auto';
