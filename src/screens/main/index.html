@@ -112,6 +112,12 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .linha {
+            height: 2px;
+            width: 105%;
+            background-color: black;
+            margin: 10px 0 10px -11px;
+            }
         form {
             margin: 0;
         }
@@ -138,13 +144,19 @@
             .close {
                 display: none;
             }
+            .linha {
+                height: 2px;
+                width: 105%;
+                background-color: black;
+                margin: 10px 0 10px -11px;
+            }
             body {
-            font-family: Arial, sans-serif;
-            font-size: 13px;
-            justify-content: center;
-            align-items: center; 
-            height: 100vh; 
-            margin: auto;
+                font-family: Arial, sans-serif;
+                font-size: 13px;
+                justify-content: center;
+                align-items: center; 
+                height: 100vh; 
+                margin: auto;
             }
             @page {
                 size: 15mm 8mm;
@@ -173,7 +185,6 @@
                 border: solid black; /* Garante a borda visível na impressão */
                 box-sizing: border-box; /* Garante que a borda seja incluída no cálculo da largura */
                 border-bottom-color: #ffffff;
-                
             }
             .box2{
                 border: solid black; /* Garante a borda visível na impressão */
@@ -190,27 +201,17 @@
                 box-sizing: border-box; /* Garante que a borda seja incluída no cálculo da largura */
                 margin-left: 8px; /* Ajuste a margem esquerda para reduzir o deslocamento para a direita */
             }
-            .modal-content {
-                margin: 15% auto;
-                padding: 20px;
-                border: 1px solid #888;
-                width: 72mm;
-                max-width: 600px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-                border-radius: 10px;
-                margin-left: 20px; /* Ajuste a margem esquerda conforme necessário */
-            }
         }
         @media (max-width: 980px) {
             .container {
                 flex-direction: column;
                 align-items: center; /* Centraliza as colunas empilhadas */
             }
-        
             .col1, .col2 {
                 width: 100%;
                 max-width: 95%;
                 margin-right: 0;
+                margin-bottom: -11%;
             }
         
             .button-container {
@@ -254,7 +255,6 @@
         .print-button {
             margin-top: 20px;
         }
-            
     </style>
     <script src="scripts.js" defer></script>
 </head>
@@ -378,10 +378,15 @@
                     <input type="text" id="idPaciente" name="idPaciente" class="input-auto" oninput="adjustWidth(this)"></p>
                 </form>
             </div><br>
-            <div class="box">
+            <div class="box group1">
                 <form>
-                    <label for="especie">Espécie:</label>
-                    <input type="text" id="especie" name="especie" class="input-auto" oninput="adjustWidth(this)"></p>
+                    <p>Espécie:</p>
+                    <label for="canino">Canino</label>
+                    <input type="checkbox" id="canino" name="especie" onclick="toggleCheckbox(this, 'group1')">
+                    <label for="felino">Felino</label>
+                    <input type="checkbox" id="felino" name="especie" onclick="toggleCheckbox(this, 'group1')"><br>
+                    <label for="outro">Outros:</label>
+                    <input type="text" name="outro" id="outro" onclick="toggleCheckbox(this, 'group1')"class="input-auto" oninput="adjustWidth(this)">
                 </form>
             </div><br>
             <div class="box">
@@ -455,8 +460,31 @@
             </div><br>
             <div class="box">
                 <form>
-                    <label for="especie">Espécie:</label>
-                    <input type="text" id="especie" name="especie" class="input-auto" oninput="adjustWidth(this)"></p>
+                    <label for="Medico">Médico:</label>
+                    <input type="text" id="Medico" name="Medico" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div><br>
+            <div class="box">
+                <form>
+                    <label for="Pix">Pix:</label>
+                    <input type="text" id="Pix" name="Pix" class="input-auto" oninput="adjustWidth(this)"></p>
+                </form>
+            </div><br>
+            <div class="box">
+                <form>
+                    <label for="valor">Valor:</label>
+                    <input type="number" id="valor" name="valor" class="input-auto" oninput="adjustWidth(this)"></p>
+                </form>
+            </div><br>
+            <div class="box group1">
+                <form>
+                    <p>Espécie:</p>
+                    <label for="canino">Canino</label>
+                    <input type="checkbox" id="canino" name="especie" onclick="toggleCheckbox(this, 'group1')">
+                    <label for="felino">Felino</label>
+                    <input type="checkbox" id="felino" name="especie" onclick="toggleCheckbox(this, 'group1')"><br>
+                    <label for="outro">Outros:</label>
+                    <input type="text" name="outro" id="outro" onclick="toggleCheckbox(this, 'group1')"class="input-auto" oninput="adjustWidth(this)">
                 </form>
             </div><br>
             <div class="box">
@@ -495,7 +523,7 @@
                     <input type="date" id="datarealiza" name="datarealiza"></p>
                 </form>
             </div><br>
-            <div class="box">
+            <div class="box" style="margin-bottom: -4px;">
                 <form>
                     <label for="Realizadopor">Realizado Por:</label>
                     <input type="text" id="Realizadopor" name="Realizadopor" class="input-auto" oninput="adjustWidth(this)">
@@ -503,74 +531,14 @@
             </div>
             <div class="box">
                 <form>
-                    <label for="Requisiçãoentregue">Requisição entregue por:</label><br><br><br><br><br>
+                    <label for="Requisiçãoentregue">Requisição entregue por:</label><br><br><br><br>
                     <p class="assi2">_________________</p>
                     <p class="assi">Responsável Por Prencher a Requisição</p><br>
                 </form>
             </div>
             <div class="box2">
                 <form>
-                    <label for="Requisiçãorecebida">Requisição Recebida por:</label><br><br><br><br><br>
-                    <p class="assi2">_________________</p>
-                    <p class="assi">Responsável Por Prencher a Requisição</p><br>
-                </form>
-            </div>
-            <div style="page-break-after: always;"></div>
-            <div id="content-to-print"></div>
-            <div class="timestamp"></div>
-            <img src="assets/Captura de tela 2024-06-03 194109.png" class="logoreq">
-            <p style="margin-left: 10%;">Requisição de pagamento</p>
-            <div class="box">
-                <form action="/submit_respostas" method="post">
-                    <label for="Data">Data:</label>
-                    <input type="date" id="paciente" name="paciente"></p>
-                </form>
-            </div><br>
-            <div class="box">
-                <form>
-                    <label for="Medico">Médico:</label>
-                    <input type="text" id="Medico" name="Medico" class="input-auto" oninput="adjustWidth(this)">
-                </form>
-            </div><br>
-            <div class="box">
-                <form>
-                    <label for="Pix">Pix:</label>
-                    <input type="text" id="Pix" name="Pix" class="input-auto" oninput="adjustWidth(this)"></p>
-                </form>
-            </div><br>
-            <div class="box">
-                <form>
-                    <label for="valor">Valor:</label>
-                    <input type="number" id="valor" name="valor" class="input-auto" oninput="adjustWidth(this)"></p>
-                </form>
-            </div><br>
-            <div class="box">
-                <form>
-                    <label for="procedimento">Procedimento:</label>
-                    <textarea id="textarea" name="procedimento" class="textarea" oninput="autoExpand(this)"></textarea>
-                </form>
-            </div>
-             <div class="box">
-                <form>
-                    <label for="Paciente">Paciente:</label>
-                    <input type="text" id="Paciente" nome="Paciente" class="input-auto" oninput="adjustWidth(this)">
-                </form>
-            </div><br>
-            <div class="box">
-                <form>
-                    <label for="solicitante">Solicitante:</label>
-                    <input type="text" id="solicitante" name="solicitante" class="input-auto" oninput="adjustWidth(this)">
-                </form>
-            </div><br>
-            <div class="box">
-                <form>
-                    <label for="tutor">Tutor:</label>
-                    <input type="text" name="tutor" id="tutor" class="input-auto" oninput="adjustWidth(this)">
-                </form>
-            </div>
-            <div class="box2">
-                <form>
-                    <label for="Requisição">Requisição entregue por:</label><br><br><br><br><br>
+                    <label for="Requisiçãorecebida">Requisição Recebida por:</label><br><br><br><br>
                     <p class="assi2">_________________</p>
                     <p class="assi">Responsável Por Prencher a Requisição</p><br>
                 </form>
@@ -607,7 +575,7 @@
             </div>
             <div class="box group2">
                 <form>
-                    <label for="Castrato">Castrato:</label><br>
+                    <label for="Castrado">Castrado:</label><br>
                     <label for="sim">Sim</label>
                     <input type="checkbox" name="especie" id="sim" onclick="toggleCheckbox(this, 'group2')">
                     <label for="nao">Não</label>
@@ -635,38 +603,55 @@
             <div class="timestamp"></div>
             <img src="assets/Captura de tela 2024-06-03 194109.png" class="logoreq">
             <p style="margin-left: 8%;">Requisição de Exames de imagens</p>
-            <p style="margin-left: 30%;">Via 2 -clinica</p>
-            <div class="box">
-                <form action="/submit_respostas" method="post">
-                    <label for="paciente">Paciente:</label>
-                    <input type="text" id="paciente" name="paciente" class="input-auto" oninput="adjustWidth(this)"></p>
-                </form>
-            </div><br>
-            <div class="box">
+            <p style="margin-left: 30%;">Via 1 -clinica</p>
+            <div class="box" style="margin-bottom: -4px">
                 <form>
                     <label for="idPaciente">ID Paciente:</label>
                     <input type="text" id="idPaciente" name="idPaciente" class="input-auto" oninput="adjustWidth(this)"></p>
                 </form>
             </div><br>
-            <div class="box">
+            <div class="box" style="margin-bottom: -4px">
                 <form>
-                    <label for="especie">Espécie:</label>
-                    <input type="text" id="especie" name="especie" class="input-auto" oninput="adjustWidth(this)"></p>
+                    <label for="Medico">Médico:</label>
+                    <input type="text" id="Medico" name="Medico" class="input-auto" oninput="adjustWidth(this)">
                 </form>
             </div><br>
-            <div class="box">
+            <div class="box" style="margin-bottom: -4px">
+                <form>
+                    <label for="Pix">Pix:</label>
+                    <input type="text" id="Pix" name="Pix" class="input-auto" oninput="adjustWidth(this)"></p>
+                </form>
+            </div><br>
+            <div class="box" style="margin-bottom: -4px">
+                <form>
+                    <label for="valor">Valor:</label>
+                    <input type="number" id="valor" name="valor" class="input-auto" oninput="adjustWidth(this)"></p>
+                </form>
+            </div><br>
+            <div class="box group1" style="margin-bottom: -4px">
+                <form>
+                    <p>Espécie:</p>
+                    <label for="canino">Canino</label>
+                    <input type="checkbox" id="canino" name="especie" onclick="toggleCheckbox(this, 'group1')">
+                    <label for="felino">Felino</label>
+                    <input type="checkbox" id="felino" name="especie" onclick="toggleCheckbox(this, 'group1')"><br>
+                    <label for="outro">Outros:</label>
+                    <input type="text" name="outro" id="outro" onclick="toggleCheckbox(this, 'group1')"class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div><br>
+            <div class="box" style="margin-bottom: -4px">
                 <form>
                     <label for="tutor">Tutor:</label>
                     <input type="text" id="tutor" name="tutor" class="input-auto" oninput="adjustWidth(this)">
                 </form>
             </div><br>
-            <div class="box">
+            <div class="box" style="margin-bottom: -4px">
                 <form>
                     <label for="solicitante">Solicitante:</label>
                     <input type="text" id="solicitante" name="solicitante" class="input-auto" oninput="adjustWidth(this)">
                 </form>
             </div><br>
-            <div class="box group1">
+            <div class="box group1" style="margin-bottom: -4px">
                 <form>
                     <label for="externo">Externo</label>
                     <input type="checkbox" id="externo" name="especie" onclick="toggleCheckbox(this, 'group1')">
@@ -678,7 +663,7 @@
                     <input type="checkbox" name="especie" id="observação" onclick="toggleCheckbox(this, 'group1')">
                 </form>
             </div><br>
-            <div class="box">
+            <div class="box" style="margin-bottom: -4px">
                 <form>
                     <label for="exames">Exame de Imagem:</label><br>
                     <textarea id="textarea" name="exames" class="textarea" oninput="autoExpand(this)"></textarea></p>
@@ -690,7 +675,7 @@
                     <input type="date" id="datarealiza" name="datarealiza"></p>
                 </form>
             </div><br>
-            <div class="box">
+            <div class="box" style="margin-bottom: -5px">
                 <form>
                     <label for="Realizadopor">Realizado Por:</label>
                     <input type="text" id="Realizadopor" name="Realizadopor" class="input-auto" oninput="adjustWidth(this)">
@@ -706,6 +691,66 @@
             <div class="box2">
                 <form>
                     <label for="Requisiçãorecebida">Requisição Recebida por:</label><br><br><br><br><br>
+                    <p class="assi2">_________________</p>
+                    <p class="assi">Responsável Por Prencher a Requisição</p><br>
+                </form>
+            </div>
+            <div style="page-break-after: always;"></div>
+            <div id="content-to-print"></div>
+            <div class="timestamp"></div>
+            <img src="assets/Captura de tela 2024-06-03 194109.png" class="logoreq">
+            <p style="margin-left: 10%;">Requisição de Pagamentos - Veterinário/Volantes</p>
+            <div class="box">
+                <form>
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" name="data">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="Medico">Médico:</label>
+                    <input type="text" name="Medico" id="Medico" class="input-auto" oninput="adjustWidth(this)">
+            </div>
+            <div class="box">
+                <form>
+                    <label for="Pix">Pix:</label>
+                    <input type="text" name="Pix" id="Pix" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="valor">Valor:</label>
+                    <input type="number" name="valor" id="valor">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="procedimento">Procedimento:</label><br>
+                    <textarea  id="textarea" class="textarea" oninput="autoExpand(this)"></textarea>
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="solicitante">Solicitante:</label>
+                    <input type="text" name="solicitante" id="solicitante" class="input-auto" oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="paciente">Paciente:</label>
+                    <input type="text" name="paciente" id="paciente" class="input-auto"oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div class="box">
+                <form>
+                    <label for="tutor">Tutor:</label>
+                    <input type="text" name="tutor" id="tutor" class="input-auto"oninput="adjustWidth(this)">
+                </form>
+            </div>
+            <div class="box2">
+                <form>
+                    <label for="entregue">Requisição entregue por:</label>
+                    <input type="text" name="entregue" id="entregue" class="input-auto" oninput="adjustWidth(this)"><br><br><br>
                     <p class="assi2">_________________</p>
                     <p class="assi">Responsável Por Prencher a Requisição</p><br>
                 </form>
@@ -742,7 +787,7 @@
             </div>
             <div class="box group2">
                 <form>
-                    <label for="Castrato">Castrato:</label><br>
+                    <label for="Castrado">Castrado:</label><br>
                     <label for="sim">Sim</label>
                     <input type="checkbox" name="especie" id="sim" onclick="toggleCheckbox(this, 'group2')">
                     <label for="nao">Não</label>
@@ -770,19 +815,19 @@
             <span class="close" onclick="closeModal('Exameshematologicosinter')">&times;</span>
             <img src="assets/Captura de tela 2024-06-03 194109.png" class="logoreq">
             <p style="margin-left: 10%;">Requisição de Exames Hematológicos e Testes</p>
-            <div class="box">
+            <div class="box" style="margin-bottom: -5px;">
                 <form action="/submit_respostas" method="post">
                     <label for="paciente">Paciente:</label>
                     <input type="text" id="paciente" name="paciente" class="input-auto" oninput="adjustWidth(this)"></p>
                 </form>
             </div><br>
-            <div class="box">
+            <div class="box" style="margin-bottom: -5px;">
                 <form>
                     <label for="idPaciente">ID Paciente:</label>
                     <input type="text" id="idPaciente" name="idPaciente" class="input-auto" oninput="adjustWidth(this)"></p>
                 </form>
             </div><br>
-            <div class="box group1">
+            <div class="box group1" style="margin-bottom: -5px;">
                 <form>
                     <p>Espécie:</p>
                     <label for="canino">Canino</label>
@@ -793,19 +838,19 @@
                     <input type="text" name="outro" id="outro" onclick="toggleCheckbox(this, 'group1')" class="input-auto" oninput="adjustWidth(this)">
                 </form>
             </div><br>
-            <div class="box">
+            <div class="box" style="margin-bottom: -5px;">
                 <form>
                     <label for="tutor">Tutor:</label>
                     <input type="text" id="tutor" name="tutor" class="input-auto" oninput="adjustWidth(this)"></p>
                 </form>
             </div><br>
-            <div class="box">
+            <div class="box" style="margin-bottom: -5px;">
                 <form>
                     <label for="solicitante">Solicitante:</label>
                     <input type="text" id="solicitante" name="solicitante" class="input-auto" oninput="adjustWidth(this)"></p>
                 </form>
             </div><br>
-            <div class="box group2">
+            <div class="box group2" style="margin-bottom: -5px;">
                 <form>
                     <label for="externo">Externo</label>
                     <input type="checkbox" id="externo" name="especie" onclick="toggleCheckbox(this, 'group2')">
@@ -825,14 +870,19 @@
             </div><br>
             <div class="box2">
                 <form>
-                    <label for="dataColeta">Data de Coleta:</label>
-                    <input type="date" id="dataColeta" name="dataColeta"></p>
-                </form>
-            </div><br>
-            <div class="box">
-                <form>
-                    <label for="Prazo">Prazo:</label>
-                    <input type="text" name="prazo" id="prazo" class="input-auto" oninput="adjustWidth(this)">
+                    <div style="display: flex; flex-direction: column;">
+                        <div style="flex: 1;">
+                            <label for="dataColeta">Data de Coleta:</label>
+                            <input type="date" id="dataColeta" name="dataColeta">
+                        </div>
+                       
+                        <div class="linha"></div>
+
+                        <div style="flex: 1; margin-top: -9px;">
+                            <label for="prazo">Prazo:</label>
+                            <input type="text" name="prazo" id="prazo" class="input-auto" oninput="adjustWidth(this)">
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="box2">
@@ -1746,26 +1796,33 @@
             numbers.forEach(input => input.setAttribute('value', input.value));
         
             const printContent = modalContent.innerHTML;
-            const originalContent = document.body.innerHTML;
-            document.body.innerHTML = `
-                <html>
-                    <head>
-                        <title>Impressão</title>
-                        <style>
-                            .modal-content h2 {
-                                text-align: center;
-                                margin-top: 20px;
-                                font-size: 24px;
-                            }
-                        </style>
-                    </head>
-                    <body>${printContent}</body>
-                </html>
-            `;
-            window.print();
-            document.body.innerHTML = originalContent;
-            window.location.reload();
-        }
+    const printCSS = `
+        <style>
+            @media print {
+                .linha {
+                    height: 2px !important;
+                    width: 100% !important;
+                    background-color: black !important;
+                    margin: 10px 0 !important;
+                }
+            }
+        </style>
+    `;
+    
+    // Substitui o conteúdo do corpo
+    document.body.innerHTML = `
+        <html>
+            <head>
+                <title>Impressão</title>
+                ${printCSS}
+            </head>
+            <body>${printContent}</body>
+        </html>
+    `;
+    window.print();
+    // Restaura o conteúdo original
+    window.location.reload();
+}
         
         function adjustWidth(input) {
             input.style.width = 'auto';
@@ -1886,7 +1943,7 @@
                 formattedValue += value;
                 input.value = formattedValue;
             });
-        });        
+        });
     </script>
 </body>
 </html>
