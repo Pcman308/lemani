@@ -139,22 +139,10 @@
         .print-button:hover {
             background-color: #c0a321;
         }
-        .box{
-                page-break-inside: avoid;
-            }
         @media print {
             .print-button,
             .close {
                 display: none;
-            }
-            .box{
-                page-break-inside: avoid;
-            }
-            .linha {
-                height: 2px;
-                width: 105%;
-                background-color: black;
-                margin: 10px 0 10px -11px;
             }
             body {
                 font-family: Arial, sans-serif;
@@ -191,6 +179,7 @@
                 border: solid black; /* Garante a borda visível na impressão */
                 box-sizing: border-box; /* Garante que a borda seja incluída no cálculo da largura */
                 border-bottom-color: #ffffff;
+                margin-right: 10px;
             }
             .box2{
                 border: solid black; /* Garante a borda visível na impressão */
@@ -426,7 +415,7 @@
             </div>
             <div class="box2">
                 <form>
-                    <p>Resultado: www.lemanipet.com.br</p><img src="assets/qr_code.png" height="60px" width="60px" top="50px">
+                    <p>Resultado: www.lemanipet.com.br <img src="assets/qr_code.png" height="35px" width="35px" style="display: inline-block; vertical-align: middle; margin-left: 10px;"></p>
                     <p>ID: 220027</p>
                 
                     <label for="usuario">Usuário:</label>
@@ -535,16 +524,9 @@
                     <input type="text" id="Realizadopor" name="Realizadopor" class="input-auto" oninput="adjustWidth(this)">
                 </form>
             </div>
-            <div class="box">
-                <form>
-                    <label for="Requisiçãoentregue">Requisição entregue por:</label><br><br><br><br>
-                    <p class="assi2">_________________</p>
-                    <p class="assi">Responsável Por Prencher a Requisição</p><br>
-                </form>
-            </div>
             <div class="box2">
                 <form>
-                    <label for="Requisiçãorecebida">Requisição Recebida por:</label><br><br><br><br>
+                    <label for="Requisiçãoentregue">Requisição entregue por:</label><br><br><br><br>
                     <p class="assi2">_________________</p>
                     <p class="assi">Responsável Por Prencher a Requisição</p><br>
                 </form>
@@ -687,16 +669,9 @@
                     <input type="text" id="Realizadopor" name="Realizadopor" class="input-auto" oninput="adjustWidth(this)">
                 </form>
             </div>
-            <div class="box">
-                <form>
-                    <label for="Requisiçãoentregue">Requisição entregue por:</label><br><br><br><br><br>
-                    <p class="assi2">_________________</p>
-                    <p class="assi">Responsável Por Prencher a Requisição</p><br>
-                </form>
-            </div>
             <div class="box2">
                 <form>
-                    <label for="Requisiçãorecebida">Requisição Recebida por:</label><br><br><br><br><br>
+                    <label for="Requisiçãoentregue">Requisição entregue por:</label><br><br><br><br><br>
                     <p class="assi2">_________________</p>
                     <p class="assi">Responsável Por Prencher a Requisição</p><br>
                 </form>
@@ -880,16 +855,15 @@
                     <input type="date" id="dataColeta" name="dataColeta">
                 </form>
             </div>
-            <div class="box2">
+            <div class="box">
                 <form>
                     <label for="prazo">Prazo:</label>
                     <input type="text" name="prazo" id="prazo" class="input-auto" oninput="adjustWidth(this)">
                 </form>
             </div>
-            <div style="page-break-after: always;"></div>
             <div class="box2">
                 <form>
-                    <p>Resultado: www.lemanipet.com.br</p><img src="assets/qr_code.png" height="60px" width="60px" top="50px">
+                    <p>Resultado: www.lemanipet.com.br <img src="assets/qr_code.png" height="35px" width="35px" style="display: inline-block; vertical-align: middle; margin-left: 10px;"></p>
                     <p>ID: 220027</p>
                 
                     <label for="usuario">Usuário:</label>
