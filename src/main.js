@@ -1,5 +1,5 @@
 const { app, BrowserWindow } = require("electron");
-const MainScreen = require('../../mainScreen');
+const MainScreen = require('./mainScreen');
 const { autoUpdater } = require("electron-updater");
 
 let curWindow;
