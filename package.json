@@ -1,6 +1,6 @@
 {
   "name": "lemanipet",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Aplicativo para gerenciamento de requisições",
   "main": "src/main.js",
   "scripts": {
